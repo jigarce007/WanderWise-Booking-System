@@ -15,15 +15,24 @@ router
   .get(toursController.aliasTopTours, toursController.gettours);
 
 router.route('/').get(authController.protect, toursController.gettours);
-router.route('/addtour').post(toursController.newtour);
+router
+  .route('/addtour')
+  .post(
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
+    toursController.newtour
+  );
 router
   .route('/:id')
   .get(toursController.getour)
-  .patch(toursController.updatetour)
-  // .delete(authController.protect,authController.restrictTo('admin','lead-guide'),toursController.delettour);
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
+    toursController.updatetour
+  )
   .delete(
-    // authController.protect,
-    // authController.restrictTo('admin', 'lead-guide'),
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
     toursController.delettour
   );
 
