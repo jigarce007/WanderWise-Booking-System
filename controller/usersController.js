@@ -4,11 +4,6 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const User = require('./../model/userModel');
 const factory = require('./../controller/handlerFactory');
-// const users = fs.readFileSync(
-//   `${__dirname}/../dev-data/data/users.json`,
-//   'utf-8'
-// );
-//const usersData = JSON.parse(users);
 
 const joiSchema = joi.object({
   name: joi.string().min(3).max(30).required(),
@@ -31,27 +26,10 @@ exports.validateBody = (req, res, next) => {
 exports.validateBody;
 
 //route handlers for users
-exports.getusers = (req, res) => {
-  const users = User.find();
-  res.status(200).json({
-    status: 'Success',
-    results: users.length,
-    users,
-  });
-};
-
-exports.getuser = (req, res) => {
-  const id = req.params.id;
-  console.log(`Requested Id is : ${id}`);
-  const user = usersData.find((el) => el._id === id);
-  console.log(user);
-  res.status(200).json({
-    status: 'Success',
-    data: {
-      user,
-    },
-  });
-};
+exports.allUsers = factory.getAll(User);
+exports.getuser = factory.getOne(User);
+exports.updateuserData = factory.updateone(User); //do not uodate password with this route.
+exports.deleteuser = factory.deleteone(User);
 
 exports.createuser = (req, res) => {
   const newID =
@@ -83,18 +61,6 @@ exports.updateuser = (req, res) => {
     },
   });
 };
-
-// exports.deleteuser = (req, res) => {
-//   res.status(204).json({
-//     status: 'successfully deleted user',
-//     data: null,
-//   });
-// };
-
-//do notk uodate password with this route.
-exports.updateuserData = factory.updateone(User);
-exports.deleteuser = factory.deleteone(User);
-
 
 const filterObject = (obj, ...allowedFields) => {
   const newObj = {};
@@ -131,12 +97,8 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.allUsers = catchAsync(async (req, res, next) => {
-  const users = await User.find();
-
-  res.status(200).json({
-    status: 'Success',
-    results: users.length,
-    users,
-  });
-});
+//to get the current logged in user details
+exports.getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+}
