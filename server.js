@@ -20,7 +20,7 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
-    autoIndex: true, //make it false for production
+    // autoIndex: true, //make it false for production
   })
   .then((con) => {
     // console.log('Database URL:', DB);
