@@ -19,9 +19,16 @@ router.patch(
 router.get('/me', authController.protect, usersController.getMe);
 router.patch('/update-me', authController.protect, usersController.updateMe);
 router.patch('/delete-me', authController.protect, usersController.deleteMe);
-router.get('/allusers', usersController.allUsers);
-
-router.delete('/:id', usersController.deleteuser);
-router.patch('/:id', usersController.updateuserData);
+router.get(
+  '/allusers',
+  authController.protect,
+  authController.restrictTo('admin'),
+  usersController.allUsers
+);
+router
+  .route('/:id')
+  .get(usersController.getuser)
+  .patch(usersController.updateuserData)
+  .delete(usersController.deleteuser);
 
 module.exports = router;

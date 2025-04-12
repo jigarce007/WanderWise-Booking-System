@@ -20,10 +20,9 @@ router
   .route('/:id')
   .get(toursController.getour)
   .patch(toursController.updatetour)
-  // .delete(authController.protect,authController.restrictTo('admin','lead-guide'),toursController.delettour);
   .delete(
-    // authController.protect,
-    // authController.restrictTo('admin', 'lead-guide'),
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
     toursController.delettour
   );
 

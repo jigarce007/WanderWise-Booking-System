@@ -97,11 +97,7 @@ const tourSchema = new mongoose.Schema(
   }
 );
 
-//to add virtual properties
-// tourSchema.virtual('durationWeeks').get(function () {
-//   return this.duration / 7;
-// });
-
+tourSchema.index({ price: 1, ratingsAverage: -1 });
 //virtual populate
 tourSchema.virtual('reviews', {
   ref: 'Review', // Refers to the 'Review' model
