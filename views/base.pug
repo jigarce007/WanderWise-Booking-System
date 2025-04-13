@@ -6,16 +6,12 @@ html
         link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
         link(rel='stylesheet', href='css/style.css')
         link(rel='shortcut icon', type='image/png', href='img/favicon.ico')
-        title Natours | Exciting tours for adventurous people
+        title Natours | #{title}
 
 
     body 
-    
         include _header
-                
-        main.main
-            h1 Welcome to Natours
-
+        block content
         include _footer
 
         
