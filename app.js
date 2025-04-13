@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const viewRouter = require('./router/veiwRouter');
 const tourRouter = require('./router/toursRouter');
 const userRouter = require('./router/usersRouter');
 const reviewRouter = require('./router/reviewRouter');
@@ -67,12 +68,7 @@ app.use((req, res, next) => {
 
 //ROUTES
 //this route is for website(frontend)
-app.use('/', (req, res) => {
-  res.status(200).render('base', {
-    tour: 'Welcome to Natours!',
-    user: 'Jigar',
-  });
-});
+app.use('/', viewRouter);
 
 //following routes are for api endpoints
 app.use('/api/tours', tourRouter);
