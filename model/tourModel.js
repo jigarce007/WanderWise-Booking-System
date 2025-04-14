@@ -1,7 +1,12 @@
+const slugify = require('slugify');
 const mongoose = require('mongoose');
 const Review = require('./reviewModel');
 const tourSchema = new mongoose.Schema(
   {
+    slug: {
+      type: String,
+      unique: true,
+    },
     name: {
       type: String,
       required: [true, 'A tour must have a name'],
@@ -109,6 +114,7 @@ tourSchema.virtual('reviews', {
 //Document Middleware(pre Hook)
 tourSchema.pre('save', function (next) {
   this.name = this.name.toUpperCase();
+  this.slug = slugify(this.name, { lower: true }); // Slug generation
   console.log('Will save document...');
   next();
 });
