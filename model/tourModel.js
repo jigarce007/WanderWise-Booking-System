@@ -1,6 +1,7 @@
 const slugify = require('slugify');
 const mongoose = require('mongoose');
 const Review = require('./reviewModel');
+const User = require('./userModel');
 const tourSchema = new mongoose.Schema(
   {
     slug: {

@@ -1,0 +1,36 @@
+# Ignore environment config files
+*.env
+dev-config.env
+prod-config.env
+
+# Ignore node_modules
+node_modules
+
+# Ignore build files
+build
+
+# Ignore IDE files
+.idea
+.vscode
+
+# Ignore other files
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore coverage reports (common for testing)
+coverage/
+
+# Ignore logs (general wildcard)
+logs
+*.log
+
+# Ignore OS-specific files
+Thumbs.db
+ehthumbs.db
+
+# Ignore npm package-lock or yarn lock if you're not using it
+# Uncomment if you don't want it in repo
+# package-lock.json
+# yarn.lock
