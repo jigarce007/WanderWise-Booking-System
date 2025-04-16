@@ -1,5 +1,13 @@
 extends base
 
+block append head
+  link(
+    href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css',
+    rel='stylesheet'
+  )
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js')
+     
+
 mixin overviewDetail(icon, label, text)
   .overview-box__detail
     svg.overview-box__icon
@@ -63,7 +71,7 @@ block content
       img.picture-box__img.picture-box__img--3(src=`/img/tours/${tour.images[2]}`, alt=tour.name)
 
   section.section-map
-    #map
+    #map( data-locations=`${JSON.stringify(tour.locations)}`)
 
   section.section-reviews
     .reviews
@@ -87,3 +95,5 @@ block content
         h2.heading-secondary What are you waiting for?
         p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
         button.btn.btn--green.span-all-rows Book tour now!
+
+  

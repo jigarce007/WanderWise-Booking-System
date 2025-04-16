@@ -1,17 +1,22 @@
 doctype html 
 html 
-    head 
-        meta(charset='UTF-8')
-        meta(name='viewport', content='width=device-width, initial-scale=1.0')
-        link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
-        link(rel='stylesheet', href='/css/style.css')
-        link(rel='shortcut icon', type='/image/png', href='/img/favicon.ico')
-        title WanderWise | #{title}
+    head
+        block head
+            meta(charset='UTF-8')
+            meta(name='viewport', content='width=device-width, initial-scale=1.0')
+            link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+            link(rel='stylesheet', href='/css/style.css')
+            link(rel='shortcut icon', type='/image/png', href='/img/favicon.ico')
+            title WanderWise | #{title}
 
 
     body 
         include _header
         block content
         include _footer
+        script(src='https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js')
+        script(src='/js/mapbox.js')
+
+
 
         

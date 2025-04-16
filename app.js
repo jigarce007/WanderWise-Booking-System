@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 //helmet for security
-app.use(helmet());
+// app.use(helmet());  //uncomment for PRODUCTION.
 
 //limiting
 
