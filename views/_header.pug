@@ -16,7 +16,7 @@ header.header
     if user
       a.nav__el(href='#') My bookings
       a.nav__el(href='#')
-        img.nav__user-img(src='/img/user.jpg', alt='User photo')
+        img.nav__user-img(src=`/img/users/${user.photo}`, alt=`user ${user.name}'s photo`)
         span= user.name
       button.nav__el Logout
     else

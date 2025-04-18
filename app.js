@@ -13,13 +13,15 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const app = express();
+const cookieParser = require('cookie-parser');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, `views`));
 app.set('view cache', false);
 
 app.use(express.static(path.join(__dirname, 'public'))); // serve static files
-
+// use cookie parser middleware
+app.use(cookieParser());
 //MIDDLEWARES
 app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
@@ -63,6 +65,7 @@ app.use(
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   console.log(`${req.method} ${req.path} ${new Date().toISOString()}`);
+  console.log(`Cookie::::: ${req.headers.cookie}`);
   next();
 });
 
