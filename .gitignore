@@ -34,3 +34,13 @@ ehthumbs.db
 # Uncomment if you don't want it in repo
 # package-lock.json
 # yarn.lock
+
+# Ignore build artifacts
+/public/js/bundle.js
+/public/js/bundle.js.map
+
+# Ignore all map files (optional)
+*.map
+
+# Parcel cache
+.cache/
